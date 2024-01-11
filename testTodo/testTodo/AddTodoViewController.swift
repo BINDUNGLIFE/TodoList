@@ -11,6 +11,7 @@ class AddTodoViewController: UIViewController {
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextView: UITextView!
+    @IBOutlet weak var categorySegmentedControl: UISegmentedControl!
     var didAddHandler: ((Todo) -> Void)?
     
     
@@ -22,14 +23,15 @@ class AddTodoViewController: UIViewController {
         }
         
         let content = contentTextView.text ?? ""
-            let newTodo = Todo(title: title, content: content, isComplete: false, category: "Work")
+        let category = categorySegmentedControl.selectedSegmentIndex == 0 ? "Work" : "Life"
+        let newTodo = Todo(title: title, content: content, isComplete: false, category: category)
             
             // TodoListViewController로 새 Todo 객체를 전달하기 위해 핸들러를 호출합니다.
             didAddHandler?(newTodo)
             
             // 현재 뷰 컨트롤러를 닫고 이전 화면으로 돌아갑니다.
-            self.navigationController?.popViewController(animated: true)
-        }
+        self.navigationController?.popViewController(animated: true)
+           }
     
     
     @IBAction func cancelButtonAction(_ sender: Any) {

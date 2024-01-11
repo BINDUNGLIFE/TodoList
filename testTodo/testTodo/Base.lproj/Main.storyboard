@@ -118,37 +118,43 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F4E-xf-9sA">
-                                <rect key="frame" x="25" y="187" width="343" height="274"/>
+                                <rect key="frame" x="25" y="215" width="343" height="274"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="343" id="4v0-zb-B9A"/>
-                                    <constraint firstAttribute="width" secondItem="F4E-xf-9sA" secondAttribute="height" multiplier="343:274" id="B6E-Rl-hDz"/>
-                                    <constraint firstAttribute="height" constant="274" id="Dmt-3X-Gyj"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="Obf-9m-cQR"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="274" id="ubh-nZ-UFj"/>
+                                    <constraint firstAttribute="height" constant="274" id="pAL-ij-Ucj"/>
                                 </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AZb-C3-jsr">
+                                <rect key="frame" x="145" y="175" width="103" height="32"/>
+                                <segments>
+                                    <segment title="Life"/>
+                                    <segment title="Work"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Mrg-Xk-0pe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="F4E-xf-9sA" firstAttribute="top" secondItem="AZb-C3-jsr" secondAttribute="bottom" constant="9" id="0CR-uW-ilH"/>
                             <constraint firstItem="E0w-Cp-Eau" firstAttribute="leading" secondItem="Mrg-Xk-0pe" secondAttribute="leading" id="3Zn-la-OaL"/>
                             <constraint firstItem="E0w-Cp-Eau" firstAttribute="top" secondItem="Mrg-Xk-0pe" secondAttribute="top" constant="10" id="A4y-Jx-vdk"/>
                             <constraint firstItem="E0w-Cp-Eau" firstAttribute="leading" secondItem="Mrg-Xk-0pe" secondAttribute="leading" id="Qae-VC-gGt"/>
-                            <constraint firstItem="Mrg-Xk-0pe" firstAttribute="trailing" secondItem="F4E-xf-9sA" secondAttribute="trailing" constant="25" id="X7p-CE-zeJ"/>
+                            <constraint firstItem="F4E-xf-9sA" firstAttribute="centerX" secondItem="AZb-C3-jsr" secondAttribute="centerX" id="R1A-nC-u6U"/>
+                            <constraint firstItem="F4E-xf-9sA" firstAttribute="leading" secondItem="NdS-Zu-ZEo" secondAttribute="leading" id="V22-M6-HLk"/>
                             <constraint firstItem="Mrg-Xk-0pe" firstAttribute="trailing" secondItem="NdS-Zu-ZEo" secondAttribute="trailing" constant="25" id="YKC-hA-ceF"/>
                             <constraint firstItem="NdS-Zu-ZEo" firstAttribute="leading" secondItem="Mrg-Xk-0pe" secondAttribute="leading" constant="25" id="YSZ-Js-vkY"/>
                             <constraint firstItem="NdS-Zu-ZEo" firstAttribute="top" secondItem="E0w-Cp-Eau" secondAttribute="bottom" constant="20" id="gdE-dH-zpA"/>
-                            <constraint firstItem="F4E-xf-9sA" firstAttribute="leading" secondItem="Mrg-Xk-0pe" secondAttribute="leading" constant="25" id="i6w-gl-R2O"/>
-                            <constraint firstItem="F4E-xf-9sA" firstAttribute="top" secondItem="NdS-Zu-ZEo" secondAttribute="bottom" constant="20" id="udS-t7-o9R"/>
+                            <constraint firstItem="Mrg-Xk-0pe" firstAttribute="bottom" secondItem="F4E-xf-9sA" secondAttribute="bottom" constant="329" id="iIr-Xt-FPx"/>
+                            <constraint firstItem="F4E-xf-9sA" firstAttribute="trailing" secondItem="NdS-Zu-ZEo" secondAttribute="trailing" id="k6i-Tx-LGV"/>
                             <constraint firstItem="E0w-Cp-Eau" firstAttribute="trailing" secondItem="Mrg-Xk-0pe" secondAttribute="trailing" id="xoS-Wm-Tdt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="M3M-OR-QVm"/>
                     <connections>
+                        <outlet property="categorySegmentedControl" destination="AZb-C3-jsr" id="Xda-zK-EQO"/>
                         <outlet property="contentTextView" destination="F4E-xf-9sA" id="tyL-jz-6BT"/>
                         <outlet property="titleTextField" destination="NdS-Zu-ZEo" id="7Uj-15-opM"/>
                     </connections>

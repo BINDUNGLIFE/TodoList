@@ -26,15 +26,14 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     var categorizedTodos: [String: [Todo]] = [:]
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showAddTodoView" { // fSegue의 Identifier를 확인합니다.
+        if segue.identifier == "showAddTodoView" {
             if let addTodoVC = segue.destination as? AddTodoViewController {
-                // 핸들러를 정의하여 TodoListViewController의 테이블뷰를 갱신합니다.
                 addTodoVC.didAddHandler = { [weak self] newTodo in
-                    // 새로운 Todo를 list 배열에 추가합니다.
                     self?.list.append(newTodo)
-                    // 카테고리별로 Todo를 다시 분류하고, 테이블 뷰를 갱신합니다.
                     self?.categorizeTodos()
                     self?.TodoListTableView.reloadData()
+                    
+    
                 }
             }
         }
@@ -52,33 +51,33 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         return categorizedTodos.keys.count
     }
     
-    
-    // 헤더를 반환
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return Array(categorizedTodos.keys)[section]
+        let categoryKeys = Array(categorizedTodos.keys).sorted() // 'Life'와 'Work'와 같은 카테고리 이름을 정렬
+        return categoryKeys[section]
     }
-    
-    // 푸터를 반환
+
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return "This is \(Array(categorizedTodos.keys)[section]) Footer"
+        let categoryKeys = Array(categorizedTodos.keys).sorted()
+        let category = categoryKeys[section]
+        return "This is \(category) Footer" // 예: "This is Life Footer"
     }
-    
-    // 각 섹션에 해당하는 로우의 개수를 반환
+
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let categoryKey = Array(categorizedTodos.keys)[section]
-        return categorizedTodos[categoryKey]?.count ?? 0
+        let categoryKeys = Array(categorizedTodos.keys).sorted()
+        let category = categoryKeys[section]
+        return categorizedTodos[category]?.count ?? 0
     }
     
     // 셀을 구성
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let categoryKey = Array(categorizedTodos.keys)[indexPath.section]
-        if let todos = categorizedTodos[categoryKey], indexPath.row < todos.count {
-            let todo = todos[indexPath.row]
+        let categoryKeys = Array(categorizedTodos.keys).sorted()
+        let category = categoryKeys[indexPath.section]
+        if let todo = categorizedTodos[category]?[indexPath.row] {
             cell.textLabel?.text = todo.title
             cell.detailTextLabel?.text = todo.content
-            cell.accessoryType = todo.isComplete ? .checkmark : .none
-            // 체크마크 설정
             cell.accessoryType = todo.isComplete ? .checkmark : .none
         }
         return cell
